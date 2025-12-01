@@ -31,7 +31,7 @@
   .input-group {
     display: flex;
     flex-direction: column;
-    flex: 1 1 110px;
+    flex: 1 1 100px;
     min-width: 80px;
   }
 
@@ -104,23 +104,23 @@
       </div>
 
       <div class="input-group">
-        <label>UAH:</label>
+        <label>Сума (UAH):</label>
         <input type="number" class="num" placeholder="10000">
-      </div>
-
-      <div class="input-group">
-        <label>Buy:</label>
-        <input type="number" class="num" placeholder="40.2">
-      </div>
-
-      <div class="input-group">
-        <label>Sell:</label>
-        <input type="number" class="num" placeholder="40.6">
       </div>
 
       <div class="input-group">
         <label class="commission-label">Комісія %:</label>
         <input type="number" class="num" placeholder="0">
+      </div>
+
+      <div class="input-group">
+        <label>Курс Buy:</label>
+        <input type="number" class="num" placeholder="40.2">
+      </div>
+
+      <div class="input-group">
+        <label>Курс Sell:</label>
+        <input type="number" class="num" placeholder="40.6">
       </div>
 
       <button onclick="calcRow(this)">=</button>
@@ -150,23 +150,23 @@
       </div>
 
       <div class="input-group">
-        <label>USDT:</label>
+        <label>Сума (USDT):</label>
         <input type="number" class="num" placeholder="500">
-      </div>
-
-      <div class="input-group">
-        <label>Sell (UAH):</label>
-        <input type="number" class="num" placeholder="45.55">
-      </div>
-
-      <div class="input-group">
-        <label>Buy (UAH):</label>
-        <input type="number" class="num" placeholder="43.50">
       </div>
 
       <div class="input-group">
         <label class="commission-label">Комісія %:</label>
         <input type="number" class="num" placeholder="0">
+      </div>
+
+      <div class="input-group">
+        <label>Курс Sell (UAH):</label>
+        <input type="number" class="num" placeholder="45.55">
+      </div>
+
+      <div class="input-group">
+        <label>Курс Buy (UAH):</label>
+        <input type="number" class="num" placeholder="43.50">
       </div>
 
       <button onclick="calcRow(this)">=</button>
