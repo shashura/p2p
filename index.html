@@ -20,25 +20,33 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.1); 
   }
 
-  /* 🔥 ВИПРАВЛЕНО: ТЕПЕР РЯДОК АДАПТИВНИЙ */
   .row { 
     display: flex;
-    flex-wrap: wrap;       /* дозволяє переносити елементи */
+    flex-wrap: wrap; 
     gap: 8px;
     margin-bottom: 10px;
+    align-items: flex-end;
   }
 
-  label { 
-    font-weight: bold; 
-  }
-
-  select.short, 
-  input.num { 
-    padding: 6px; 
-    border-radius: 6px; 
-    border:1px solid #ccc; 
-    flex: 1 1 110px;       /* 🔥 адаптивна ширина */
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 110px;
     min-width: 80px;
+  }
+
+  .input-group label {
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+
+  .input-group input,
+  .input-group select {
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   button { 
@@ -74,38 +82,49 @@
 
 <body>
 <h2>P2P Арбітраж Калькулятор</h2>
+  <h2>Р2Рішнік 🇺🇦 ⚜️Віталій Олегович⚜️</h2>
 
 <div id="calculator">
   <div class="block" data-block="1">
     <h3>1. Картка → Купуєш → Продаєш</h3>
 
     <div class="row">
-      <label>Buy:</label>
-      <select class="short">
-        <option>Binance</option><option>Bybit</option><option>OKX</option><option>MEXC</option><option>Telegram</option>
-      </select>
+      <div class="input-group">
+        <label>Buy:</label>
+        <select>
+          <option>Binance</option><option>Bybit</option><option>OKX</option><option>MEXC</option><option>Telegram</option>
+        </select>
+      </div>
 
-      <label>Sell:</label>
-      <select class="short">
-        <option>Binance</option><option>Bybit</option><option>OKX</option><option>MEXC</option><option>Telegram</option>
-      </select>
+      <div class="input-group">
+        <label>Sell:</label>
+        <select>
+          <option>Binance</option><option>Bybit</option><option>OKX</option><option>MEXC</option><option>Telegram</option>
+        </select>
+      </div>
 
-      <label>UAH:</label>
-      <input type="number" class="num" placeholder="10000" />
+      <div class="input-group">
+        <label>UAH:</label>
+        <input type="number" class="num" placeholder="10000">
+      </div>
 
-      <label>Buy:</label>
-      <input type="number" class="num" placeholder="40.2" />
+      <div class="input-group">
+        <label>Buy:</label>
+        <input type="number" class="num" placeholder="40.2">
+      </div>
 
-      <label>Sell:</label>
-      <input type="number" class="num" placeholder="40.6" />
+      <div class="input-group">
+        <label>Sell:</label>
+        <input type="number" class="num" placeholder="40.6">
+      </div>
 
-      <label class="commission-label">Комісія %:</label>
-      <input type="number" class="num" placeholder="0" />
+      <div class="input-group">
+        <label class="commission-label">Комісія %:</label>
+        <input type="number" class="num" placeholder="0">
+      </div>
 
       <button onclick="calcRow(this)">=</button>
-
       <span><b>0 грн (0%)</b></span>
-
       <button class="remove-btn" onclick="resetRow(this)">×</button>
     </div>
 
@@ -116,32 +135,42 @@
     <h3>2. Біржа → Продаєш → Відкуповуєш (результат у USDT)</h3>
 
     <div class="row">
-      <label>Sell:</label>
-      <select class="short">
-        <option>Binance</option><option>Bybit</option><option>OKX</option><option>MEXC</option><option>Telegram</option>
-      </select>
+      <div class="input-group">
+        <label>Sell:</label>
+        <select>
+          <option>Binance</option><option>Bybit</option><option>OKX</option><option>MEXC</option><option>Telegram</option>
+        </select>
+      </div>
 
-      <label>Buy:</label>
-      <select class="short">
-        <option>Binance</option><option>Bybit</option><option>OKX</option><option>MEXC</option><option>Telegram</option>
-      </select>
+      <div class="input-group">
+        <label>Buy:</label>
+        <select>
+          <option>Binance</option><option>Bybit</option><option>OKX</option><option>MEXC</option><option>Telegram</option>
+        </select>
+      </div>
 
-      <label>USDT:</label>
-      <input type="number" class="num" placeholder="500" />
+      <div class="input-group">
+        <label>USDT:</label>
+        <input type="number" class="num" placeholder="500">
+      </div>
 
-      <label>Sell (UAH):</label>
-      <input type="number" class="num" placeholder="45.55" />
+      <div class="input-group">
+        <label>Sell (UAH):</label>
+        <input type="number" class="num" placeholder="45.55">
+      </div>
 
-      <label>Buy (UAH):</label>
-      <input type="number" class="num" placeholder="43.50" />
+      <div class="input-group">
+        <label>Buy (UAH):</label>
+        <input type="number" class="num" placeholder="43.50">
+      </div>
 
-      <label class="commission-label">Комісія %:</label>
-      <input type="number" class="num" placeholder="0" />
+      <div class="input-group">
+        <label class="commission-label">Комісія %:</label>
+        <input type="number" class="num" placeholder="0">
+      </div>
 
       <button onclick="calcRow(this)">=</button>
-
       <span><b>0 USDT (0%)</b></span>
-
       <button class="remove-btn" onclick="removeRow(this)">×</button>
     </div>
 
