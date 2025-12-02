@@ -183,31 +183,52 @@
 function calcRow(btn) {
   const row = btn.parentElement;
   const inputs = row.querySelectorAll('input.num');
-  const commission = +inputs[inputs.length-1].value || 0;
+
+  // Новий порядок полів:
+  // 0 — сума
+  // 1 — комісія
+  // 2 — курс buy
+  // 3 — курс sell
+
+  let amount = +inputs[0].value || 0;
+  let commission = +inputs[1].value || 0;
+  let buy = +inputs[2].value || 0;
+  let sell = +inputs[3].value || 0;
+
   let profit = 0;
   let percent = 0;
   let outAmount = 0;
 
+  // Блок 1 — гривня → купуєш → продаєш
   if (row.parentElement.dataset.block === "1") {
-    const amount = +inputs[0].value;
-    const buy = +inputs[1].value;
-    const sell = +inputs[2].value;
-    if(!amount || !buy || !sell) return;
+    if (!amount || !buy || !sell) return;
+
     const usdt = amount / buy;
     outAmount = usdt * sell * (1 - commission/100);
+
     profit = outAmount - amount;
     percent = (profit / amount * 100).toFixed(2);
-    row.querySelector('span b').innerText = `${profit.toFixed(2)} грн (${percent}%) | Зараз: ${outAmount.toFixed(2)} грн`;
-  } else {
-    const amountUSDT = +inputs[0].value;
-    const sellUAH = +inputs[1].value;
-    const buyUAH = +inputs[2].value;
-    if(!amountUSDT || !sellUAH || !buyUAH) return;
+
+    row.querySelector('span b').innerText =
+      `${profit.toFixed(2)} грн (${percent}%) | Зараз: ${outAmount.toFixed(2)} грн`;
+  }
+
+  // Блок 2 — біржа → продаєш → відкуповуєш (USDT)
+  else {
+    const amountUSDT = amount;
+    const sellUAH = buy; 
+    const buyUAH = sell;
+
+    if (!amountUSDT || !sellUAH || !buyUAH) return;
+
     const uahAfterSell = amountUSDT * sellUAH * (1 - commission/100);
     const usdtBack = uahAfterSell / buyUAH * (1 - commission/100);
+
     profit = usdtBack - amountUSDT;
     percent = (profit / amountUSDT * 100).toFixed(2);
-    row.querySelector('span b').innerText = `${profit.toFixed(4)} USDT (${percent}%) | Зараз: ${usdtBack.toFixed(4)} USDT`;
+
+    row.querySelector('span b').innerText =
+      `${profit.toFixed(4)} USDT (${percent}%) | Зараз: ${usdtBack.toFixed(4)} USDT`;
   }
 }
 
@@ -243,5 +264,3 @@ function resetRow(btn) {
 
 </body>
 </html>
-
-
